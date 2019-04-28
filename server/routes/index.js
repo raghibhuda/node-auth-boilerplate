@@ -20,6 +20,6 @@ export default (app) => {
     app.post('/api/sign-up', cors(corsConfig), Users.signUp);
     app.post('/api/sign-in', cors(corsConfig), Users.signIn);
     app.post('/api/send-verification-mail',cors(corsConfig),Verifier.requestVerification);
-    app.post('/verification',Verifier.verifiyEmailRequest);
+    app.post('/verification',Verifier.modifiedVerification);
     
 }

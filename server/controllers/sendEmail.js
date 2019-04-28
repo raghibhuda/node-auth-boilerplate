@@ -1,31 +1,31 @@
 import nodemailer from 'nodemailer';
 require('dotenv').config();
 class EmailSender {
-    // static sendMail(req, res) {
-    //     const transporter = nodemailer.createTransport({
-    //         host: "smtp.gmail.com",
-    //         port: 465,
-    //         // secure: false,
-    //         auth: {
-    //             user: "ragibahsanul@gmail.com",
-    //             pass: "xboyfuck222xnewgmail"
-    //         }
-    //     });
-    //     const mailOptions = {
-    //         from: '"Ragib test server " <test@example.com>',
-    //         to: req.body.email,
-    //         subject: "Test email is it working !",
-    //         text: " Love is in the server :p "
-    //     };
-    //     return transporter
-    //         .sendMail(mailOptions)
-    //         .then(response => res.status(201).send({
-    //             success: true,
-    //             message: 'Email sent successfully',
-    //             response
-    //         }))
+    
+    static sendSampleMail(req, res) {
+        const transporter = nodemailer.createTransport({
+            host: process.env.MAIL_DRIVER,
+            port: process.env.MAIL_DRIVER_PORT,
+            auth: {
+                user: process.env.MAIL_DRIVER_USER,
+                pass: process.env.MAIL_DRIVER_PASSWORD
+            }
+        });
+        const mailOptions = {
+            from: '"Ragib test server " <test@example.com>',
+            to: req.body.email,
+            subject: "Test email is it working !",
+            text: " Love is in the server :p "
+        };
+        return transporter
+            .sendMail(mailOptions)
+            .then(response => res.status(201).send({
+                success: true,
+                message: 'Email sent successfully',
+                response
+            }))
 
-    // }
+    }
 
     static verificationEmail(receiver, token) {
 
@@ -34,7 +34,7 @@ class EmailSender {
             port: process.env.MAIL_DRIVER_PORT,
             // secure: false,
             auth: {
-                user:process.env.MAIL_DRIVER_USER,
+                user: process.env.MAIL_DRIVER_USER,
                 pass: process.env.MAIL_DRIVER_PASSWORD
             }
         });

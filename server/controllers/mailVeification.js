@@ -77,6 +77,55 @@ class Verifier {
             })
     }
 
+    static modifiedVerification(req, res) {
+        return User
+            .findOne({
+                where: {
+                    email: req.query.email
+                }
+            }).then((user) => {
+                if (user.email_verified) {
+                    return res.status(201).send({
+                        success: true,
+                        message: 'Email already verified'
+                    });
+                } else {
+                    return VerificationToken
+                        .findOne({
+                            where: {
+                                token: req.query.token
+                            }
+                        }).then((foundToken) => {
+                            console.log(foundToken,"==========token found=========");
+                            if (foundToken) {
+                                return user
+                                    .update({
+                                        email_verified: true
+                                    }).then((updatedUser) => {
+                                        return VerificationToken
+                                            .destroy({
+                                                where: {
+                                                    userId: updatedUser.id
+                                                }
+                                            }).then((response) => {
+                                                return res.status(201).send({
+                                                    success: true,
+                                                    message: 'User email verified',
+                                                    response
+                                                });
+                                            }).catch((error) => res.status(401).send(error));
+                                    }).catch((error) => res.status(401).send(error));
+                            } else {
+                                return res.status(401).send({
+                                    success: false,
+                                    message: 'Token expired'
+                                })
+                            }
+                        }).catch((error) => res.status(401).send(error));
+                }
+            })
+    }
+
 }
 
 export default Verifier;
