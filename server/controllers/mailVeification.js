@@ -8,7 +8,6 @@ import verificationEmail from './sendEmail';
 
 
 
-
 const { User, VerificationToken } = model;
 require('../config/passport')(passport);
 
@@ -83,6 +82,7 @@ class Verifier {
                 }
             })
     }
+
 
 }
 
