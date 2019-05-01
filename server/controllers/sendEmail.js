@@ -42,8 +42,8 @@ class EmailSender {
         const mailOptions = {
             from: '"Ragib test server " <test@example.com>',
             to: receiver,
-            subject: "Test email is it working !",
-            text: `Click on this link to verify your email ${hostUrl}/resetpass?token=${token}&email=${receiver}`
+            subject: "Test email is it working............",
+            text: `Click on this link to verify your email ${hostUrl}/verification?token=${token}&email=${receiver}`
         };
         return transporter
             .sendMail(mailOptions)
