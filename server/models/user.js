@@ -37,7 +37,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-
+    phone_verified: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    phone_number :{
+      type: DataTypes.STRING,
+      allowNull:true,
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: {

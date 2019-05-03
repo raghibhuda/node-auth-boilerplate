@@ -1,7 +1,7 @@
 import Users from '../controllers/user';
-// import EmailSender from '../controllers/sendEmail';
 import Verifier from '../controllers/mailVeification';
 import PasswordReseter from '../controllers/resetPassword';
+import PhoneVerifier from '../controllers/phoneVerification';
 import cors from 'cors';
 import passport from 'passport';
 require('../config/passport')(passport);
@@ -28,5 +28,10 @@ export default (app) => {
     //Forget Password and  reset routes
     app.post('/send-rest-password-mail',PasswordReseter.requestPasswordReset);
     app.post('/reset-password',PasswordReseter.resetPassword);
+
+    //Phone verificaion 
+
+    app.post('/api/send-verification-code',PhoneVerifier.sendPhoneVerificationCode);
+    app.post('/api/verifiy-phone',PhoneVerifier. phoneVerification);
     
 }
