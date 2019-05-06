@@ -45,6 +45,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull:true,
     },
+    googel_2fa_secret:{
+      type: DataTypes.TEXT,
+      allowNull:true,
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: {

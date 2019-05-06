@@ -2,6 +2,7 @@ import Users from '../controllers/user';
 import Verifier from '../controllers/mailVeification';
 import PasswordReseter from '../controllers/resetPassword';
 import PhoneVerifier from '../controllers/phoneVerification';
+import Authenticator from '../controllers/authenticator';
 import cors from 'cors';
 import passport from 'passport';
 require('../config/passport')(passport);
@@ -33,5 +34,9 @@ export default (app) => {
 
     app.post('/api/send-verification-code',PhoneVerifier.sendPhoneVerificationCode);
     app.post('/api/verifiy-phone',PhoneVerifier. phoneVerification);
-    
+
+
+    // Google verification endpoint
+    app.post('/api/google-2fa-code-request',Authenticator.qrCodeGenerator);
+    app.post('/api/verify-google-2fa-code',Authenticator.verifyGoogleAuthenticatorCode);
 }
