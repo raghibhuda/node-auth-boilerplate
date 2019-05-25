@@ -18,7 +18,7 @@
 - passport-jwt
 - jsonwebtoken
 - authy (Phone verification api)
-- dotenv
+- dotenv (for managing environment variables)
 
 ### To get started 
 **First Clone the repo** 
